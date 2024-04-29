@@ -6,11 +6,11 @@ import "@plaso-infi/whiteboard-sdk/dist/cjs/index.css";
 // 画布连接参数数据示例，仅作 demo 演示
 const devQuerySample = {
   /**
-  * 画布 id，通常情况下为英飞服务端生成的 uuid，这里使用的是创建 app 后,
-  * 英飞服务端自动帮忙创建的一块 Hello World 画布，以方便开发者能仅基于前端
-  * 就能访问画布，而不是首先要基于 restful 接口创建画布，记录 recordId，再基于
-  * recordId 来生成画布连接参数。
-  */
+   * 画布 id，通常情况下为英飞服务端生成的 uuid，这里使用的是创建 app 后,
+   * 英飞服务端自动帮忙创建的一块 Hello World 画布，以方便开发者能仅基于前端
+   * 就能访问画布，而不是首先要基于 restful 接口创建画布，记录 recordId，再基于
+   * recordId 来生成画布连接参数。
+   */
   recordId: "HelloWorld",
   // 您注册的应用 appId
   appId: "YOUR_APP_ID_HERE",
@@ -34,7 +34,7 @@ window.onload = async () => {
   // 获取画布容器 dom
   const container = document.getElementById("board-app") as HTMLDivElement;
   // 初始化画布实例
-  const initRes = await InfiWebSdk.getSdkInstance({
+  const initPromise = await InfiWebSdk.getSdkInstance({
     getQueryString: getQuery,
     /**
      * 给入画布用户的信息，包括用户ID loginName，与用户名称 userName。
@@ -57,6 +57,12 @@ window.onload = async () => {
    * - code 为 0 时，表示初始化成功，此时 payload 为 Web SDK 实例对象
    * - code 不为 0 时，表示初始化失败，此时 payload 为错误消息提示字符串
    */
-  const { code, payload } = initRes;
+  const { code, payload } = initPromise;
+  if (code) {
+    /** 打印初始化错误消息 */
+    console.error(payload);
+    return;
+  }
+  /** 初始化成功 */
   console.log(code, payload);
 };
