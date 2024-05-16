@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "@plaso-infi/whiteboard-sdk": {
+      "signature": "961b169aba14898843101ecab624799a",
+      "file": true,
+      "replaced": "^0.4.3"
+    }
+  }
+}

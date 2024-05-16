@@ -1,0 +1,39 @@
+{
+  "name": "@plaso-infi/whiteboard-sdk",
+  "version": "0.4.3",
+  "description": "",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "scripts": {
+    "vite": "vite",
+    "build": "rimraf dist && rollup -c",
+    "lint": "eslint src --fix --ext .ts,.tsx,.js,.jsx",
+    "buildTools": "rimraf dist_tools && cross-env MODE=production rollup -c rollup.tools.config.mjs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "base-64": "^1.0.0",
+    "crypto-js": "^4.1.1",
+    "hls.js": "^1.4.12"
+  },
+  "peerDependencies": {
+    "agora-rtc-sdk-ng": "^4.18.3",
+    "ali-oss": "^6.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.js.map",
+    ".npmrc"
+  ],
+  "browserslist": {
+    "development": [
+      "last 3 chrome version",
+      "last 3 safari version"
+    ]
+  },
+  "gitHead": "e0e4a9609e2123403fdcc80004d55f14f19896dc",
+  "yalcSig": "961b169aba14898843101ecab624799a"
+}
