@@ -1,1 +1,0 @@
-export{D as DefaultPerm,F as FULL_TOOLBAR_CONFIG,a as GridType,G as GroupTalkPlugin,H as HoverTip,S as SDKContext,e as Setting,f as SvgIcon,h as SvgManager,I as default,d as getDocumentType,b as getFileType}from"./index-fac35469.js";import"react";import"react-dom";import"agora-rtc-sdk-ng";
