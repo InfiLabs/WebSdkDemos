@@ -14,8 +14,8 @@
     "vite": "^5.0.11"
   },
   "dependencies": {
-    "@plaso-infi/whiteboard-ext-tools": "^0.2.8",
-    "@plaso-infi/whiteboard-sdk": "^0.3.8",
+    "@plaso-infi/whiteboard-ext-tools": "^0.4.5",
+    "@plaso-infi/whiteboard-sdk": "^0.4.5",
     "agora-rtc-sdk-ng": "^4.20.0",
     "ali-oss": "^6.19.0",
     "react": "^17.0.2",
