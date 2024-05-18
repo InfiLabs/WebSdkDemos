@@ -1,7 +1,7 @@
 import { getInfiWebsdkQuery } from "@plaso-infi/whiteboard-ext-tools";
 import InfiWebSdk from "@plaso-infi/whiteboard-sdk";
 // 需要引入画布样式文件，此文件有做类命名 scoped 处理，所以不用担心样式名称冲突
-import "@plaso-infi/whiteboard-sdk/dist/cjs/index.css";
+import "@plaso-infi/whiteboard-sdk/dist/esm/index.css";
 
 // 画布连接参数数据示例，仅作 demo 演示
 const devQuerySample = {
