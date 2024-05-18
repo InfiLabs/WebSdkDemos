@@ -1,1 +1,7 @@
 node_modules
+dist
+build
+.yalc
+yalc.lock
+.vscode
+.hintrc
