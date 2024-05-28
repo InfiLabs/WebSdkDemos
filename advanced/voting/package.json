@@ -18,8 +18,8 @@
     "vite": "^5.2.11"
   },
   "dependencies": {
-    "@plaso-infi/whiteboard-ext-tools": "^0.4.6",
-    "@plaso-infi/whiteboard-sdk": "^0.4.6",
+    "@plaso-infi/whiteboard-ext-tools": "^0.4.7",
+    "@plaso-infi/whiteboard-sdk": "^0.4.7",
     "agora-rtc-sdk-ng": "~4.18.1",
     "ali-oss": "^6.17.1",
     "moment": "^2.30.1",
