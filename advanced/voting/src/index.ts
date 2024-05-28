@@ -1,6 +1,5 @@
 import InfiWebSdk, {
   VotingPlugin,
-  GroupTalkPlugin,
   InfiWebsdkInstanceType,
 } from "@plaso-infi/whiteboard-sdk";
 import {
@@ -11,7 +10,7 @@ import {
 } from "@plaso-infi/whiteboard-ext-tools";
 import { getUsers } from "./utils/mock";
 import "@plaso-infi/whiteboard-sdk/dist/esm/index.css";
-import moment from "moment";
+import dayjs from "dayjs";
 import React from "react";
 import ReactDOM from "react-dom";
 import QrCodeModal from "./components/QrCodeModal/QrCodeModal";
@@ -55,9 +54,7 @@ const getInviteVotingUrl = async (params: {
   const url = `${location.href}?boardId=${getBoardId()}&voteId=${voteId}`;
   function getExpirationTime() {
     if (endTime) {
-      const str = moment(endTime)
-        .format("YYYY-MM-DD HH:mm")
-        .replaceAll("-", "/");
+      const str = dayjs(endTime).format("YYYY-MM-DD HH:mm").replace(/-/g, "/");
       return str;
     }
   }
@@ -107,26 +104,6 @@ const setup = async () => {
     containerDom: container,
     plugins: [
       {
-        pluginConstructor: GroupTalkPlugin,
-        config: {
-          defaultGroupsNumber: 2,
-          maxGroupsNumber: 50,
-          canCreateTalk: true,
-        },
-      },
-      // {
-      //   pluginConstructor: Voting,
-      //   config: {
-      //     autoJoinId: getVoteId(),
-      //     canCreateVoting: true,
-      //     canEndVoting: true,
-      //     getInviteVotingUrl,
-      //     showVotingQrCode,
-      //     onJoinVoting,
-      //     didLeaveVoting,
-      //   },
-      // },
-      {
         pluginConstructor: VotingPlugin,
         config: {
           votingId: getVoteId(),
@@ -142,22 +119,6 @@ const setup = async () => {
       },
     ],
     getUsersInfo: async () => [],
-    toolbarWidgetsConfigs: {
-      titleBarVisible: true,
-      optionBarVisible: true,
-      floatBarVisible: true,
-      fullscreen: false,
-      meeting: false,
-      ai: false,
-      toolbarConfig: {
-        sticker: true,
-        upload: true,
-        stickyNote: true,
-        connectLine: true,
-        frame: true,
-      },
-    },
-
     meetingConfigs: {},
   });
 
