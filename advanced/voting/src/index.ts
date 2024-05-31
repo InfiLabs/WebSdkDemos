@@ -1,6 +1,7 @@
 import InfiWebSdk, {
   VotingPlugin,
   InfiWebsdkInstanceType,
+  GroupTalkPlugin,
 } from "@plaso-infi/whiteboard-sdk";
 import {
   getInfiWebsdkQuery,
@@ -103,6 +104,14 @@ const setup = async () => {
     },
     containerDom: container,
     plugins: [
+      {
+        pluginConstructor: GroupTalkPlugin,
+        config: {
+          defaultGroupsNumber: 2,
+          maxGroupsNumber: 50,
+          canCreateTalk: true,
+        },
+      },
       {
         pluginConstructor: VotingPlugin,
         config: {

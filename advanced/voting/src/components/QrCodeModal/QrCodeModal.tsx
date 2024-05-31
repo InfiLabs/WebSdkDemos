@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Modal, QRCode } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 
 export type QrCodeModalProps = {
   show: boolean;
@@ -29,7 +29,7 @@ const QrCodeModal: React.FC<QrCodeModalProps> = ({
   const expiredTimer = useRef<any>();
 
   const getExpirationTime = () => {
-    return moment().add(5, "minutes").unix();
+    return dayjs().add(5, "minutes").unix();
   };
 
   const getUrl = () => {
