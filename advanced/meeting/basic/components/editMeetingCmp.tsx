@@ -1,27 +1,41 @@
-import React from "react";
-import { Button, Result } from "antd";
+import {
+  type EditMeetingCmpProp,
+  useInfiWebSDK,
+} from "@plaso-infi/whiteboard-sdk";
+import React, { useEffect } from "react";
+import { EditMeeting, TeamMemberInfo } from "@plaso-infi/whiteboard-ext-tools";
+import { getAllUsersInfo, getUserInfo } from "../utils/mock";
+import "@plaso-infi/whiteboard-sdk/dist/esm/index.css";
 
-export const EditMeetingCmp = () => {
+export const EditMeetingCmp = (props: EditMeetingCmpProp) => {
+  const { data, onSubmit, onFormChanged, getCurServerTime } = props;
+  const { disableShortCut, enableShortCut } = useInfiWebSDK();
+  const userInfo = getUserInfo("user_0");
+
+  const getTeamMembersInBoard = async () => {
+    const members: TeamMemberInfo[] = await getAllUsersInfo();
+    return members;
+  };
+  const preCheckMeetingAccessibility = async (
+    type?: "fast" | "reserve",
+    meetingId?: string,
+    teamId?: string
+  ) => {
+    return true;
+  };
+  useEffect(() => {}, []);
+
   return (
-    <Result
-      style={{ width: "100%" }}
-      title={
-        <>
-          <div>正在体验快速会议 </div>
-          <div>更多配置项</div>
-          <div>请前往开发者中心查看</div>
-        </>
-      }
-      extra={
-        <Button
-          type="primary"
-          onClick={() => {
-            window.open("https://developer.infi.cn/docs/websdk/intro");
-          }}
-        >
-          前往 开发者中心
-        </Button>
-      }
+    <EditMeeting
+      user={userInfo}
+      data={data}
+      onSubmit={onSubmit}
+      onFormChanged={onFormChanged}
+      getCurServerTime={getCurServerTime}
+      getTeamMembersInBoard={getTeamMembersInBoard}
+      preCheckMeetingAccessibility={preCheckMeetingAccessibility}
+      safeDisableShortCut={disableShortCut}
+      safeEnableShortCut={enableShortCut}
     />
   );
 };

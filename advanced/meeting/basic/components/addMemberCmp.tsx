@@ -1,14 +1,12 @@
 import { type AddMemberCmpProp } from "@plaso-infi/whiteboard-sdk";
-import { AddMember, TeamMemberInfo } from "@plaso-infi/whiteboard-ext-tools";
-import { getAllUsersInfo } from "../utils/mock";
-import "@plaso-infi/whiteboard-ext-tools/dist/cjs/index.css";
+import { getAllUsersInfo, getUserInfo } from "../utils/mock";
 import React from "react";
+import "@plaso-infi/whiteboard-ext-tools/dist/esm/index.css";
+import { AddMember } from "./editMeeting/addMember";
 
 export const AddMemberCmp = (props: AddMemberCmpProp) => {
   const { onSubmit, onCancel, curJoiners, listAll, getMeetingLink } = props;
-  const userInfo = JSON.parse(
-    localStorage.getItem("userInfo") || "{}"
-  ) as TeamMemberInfo;
+  const userInfo = getUserInfo("user_0");
   return (
     <AddMember
       user={userInfo}

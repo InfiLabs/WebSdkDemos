@@ -1,0 +1,402 @@
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: #c2c3c8;
+  }
+}
+
+.container {
+  .scrollbar();
+
+  width: 100%;
+  padding: 16px 20px 0 24px;
+  overflow-y: scroll;
+  height: calc(100% - 60px);
+
+  .topPart {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 24px;
+    .iconPart {
+      font-size: 24px;
+      margin-right: 0;
+      cursor: pointer;
+      &:hover {
+        color: #2e73e5;
+      }
+    }
+    .titlePart {
+      font-size: 20px;
+      color: #0c1024;
+      margin-left: 8px;
+    }
+    .closePart {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        color: #2e73e5;
+      }
+    }
+  }
+  .formPart {
+    .inputPart {
+      height: 36px;
+      border-color: #dbdbde;
+      &:focus {
+        box-shadow: none !important;
+      }
+    }
+
+    .selectPart {
+      border-color: #dbdbde;
+      :global {
+        .ant-select-selector {
+          padding: 0 10px 0 3px;
+          min-height: 36px;
+          border-radius: 4px;
+          &:hover {
+            cursor: text;
+          }
+          &:active {
+            cursor: text;
+          }
+        }
+        .ant-select-arrow {
+          position: absolute;
+          top: 18px;
+        }
+      }
+      &:focus {
+        box-shadow: none !important;
+      }
+    }
+
+    .fieldLabel {
+      line-height: 22px;
+      font-size: 14px;
+      color: #0c1024;
+      white-space: nowrap;
+    }
+
+    .fieldRow {
+      margin-bottom: 4px !important;
+    }
+
+    .addPart {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      width: 292px;
+      height: 36px;
+      border: 1px solid rgba(219, 219, 222, 1);
+      border-radius: 4px;
+      padding-left: 6px;
+      &:hover {
+        border-color: #2e73e5;
+      }
+      .iconPart {
+        font-size: 19px;
+        padding: 2px;
+        color: #2e73e5;
+        background-color: #eaf1fc;
+        border-radius: 2px;
+      }
+      .textPart {
+        padding-left: 9px;
+        color: #2e73e5;
+      }
+    }
+    .openPart {
+      display: flex;
+      align-items: center;
+      width: 142px;
+      height: 36px;
+      cursor: pointer;
+      border-radius: 4px;
+      background-color: #f5f6f6;
+      margin-right: 4px;
+      padding-left: 8px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      .icon {
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 2px;
+        font-size: 12px;
+        margin-right: 9px;
+      }
+    }
+    .addShortPart {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      width: 142px;
+      height: 36px;
+      margin-left: 4px;
+      border: 1px solid rgba(219, 219, 222, 1);
+      border-radius: 4px;
+      padding-left: 6px;
+      &:hover {
+        border-color: #2e73e5;
+      }
+      .iconPart {
+        font-size: 19px;
+        padding: 2px;
+        color: #2e73e5;
+        background-color: #eaf1fc;
+        border-radius: 2px;
+      }
+      .textPart {
+        padding-left: 9px;
+        color: #2e73e5;
+      }
+    }
+    .selectedNumPart {
+      display: flex;
+      flex-wrap: wrap;
+      width: 150px;
+      padding: 0 4px 8px 4px;
+      .itemNum {
+        display: flex;
+        position: relative;
+        align-items: center;
+        padding: 7px 8px;
+        width: 142px;
+        height: 36px;
+        background-color: #f5f6f6;
+        border-radius: 4px;
+        .avatar {
+          width: 22px !important;
+          height: 22px !important;
+          border-radius: 2px !important;
+        }
+        .namePart {
+          width: 72px;
+          margin-left: 8px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .icon {
+          position: absolute;
+          right: 8px;
+          top: 11px;
+          cursor: pointer;
+          color: #d8d8d8;
+          &:hover {
+            color: #2e73e5;
+          }
+        }
+      }
+    }
+
+    .timeSelect {
+      position: relative;
+      :global {
+        .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          &:hover {
+            border-color: #2e73e5;
+          }
+        }
+      }
+
+      .triangle {
+        border-top: 4px solid #616371;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: calc(50% - 2px);
+        right: 12px;
+        transition: transform 0.2s ease;
+
+        &.rotate {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
+
+  :global {
+    .ant-input-prefix {
+      margin-right: 0;
+    }
+    .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+      height: 36px;
+    }
+    .ant-form-item-control-input-content {
+      display: flex;
+    }
+    .ant-select-focused:not(.ant-select-disabled).ant-select:not(
+        .ant-select-customize-input
+      )
+      .ant-select-selector {
+      border-color: #2e73e5;
+    }
+    .ant-form-item-label
+      > label.ant-form-item-required:not(
+        .ant-form-item-required-mark-optional
+      )::before {
+      content: '';
+    }
+    .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
+      border-color: #2e73e5;
+    }
+    .ant-input:focus,
+    .ant-input-focused,
+    .ant-input-affix-wrapper:focus,
+    .ant-input-affix-wrapper-focused {
+      box-shadow: none !important;
+    }
+  }
+
+  .bottomBtnPart {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .bottomBtn {
+      width: 292px;
+      height: 36px;
+      line-height: 17px;
+      font-size: 16px;
+    }
+  }
+}
+/* 全局样式泄漏 */
+:global {
+  .ant-modal-body {
+    padding: 20px 0 12px 24px;
+  }
+  .ant-modal {
+    padding-bottom: 0;
+    margin: 0 auto;
+  }
+  .rc-virtual-list-scrollbar-thumb {
+    right: 0 !important;
+    width: 68% !important;
+    background-color: rgba(0, 0, 0, 0.24) !important;
+  }
+  .ant-select-item-option-selected,
+  .ant-select-item-option-active {
+    background-color: #f5f6f6 !important;
+  }
+  .ant-form-item-explain-error {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .rc-virtual-list-scrollbar {
+    display: none;
+  }
+
+  .rc-virtual-list-holder {
+    .scrollbar();
+    overflow-y: auto !important;
+  }
+
+  .ant-select-selection-item {
+    line-height: 34px !important;
+  }
+
+  .ant-select-status-error.ant-select:not(.ant-select-disabled):not(
+      .ant-select-customize-input
+    )
+    .ant-select-selector {
+    border-left: none !important;
+  }
+  .ant-form {
+    color: #0c1024;
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.selectItem {
+  display: flex;
+  align-items: center;
+  &.tagRender {
+    height: 30px;
+    background-color: #eaf1fc;
+    border: none;
+    margin: 1.5px 4px 1.5px 0;
+    .namePart {
+      max-width: 182px;
+      color: #2e73e5;
+    }
+    .closeIcon {
+      font-size: 14px;
+      color: #2e73e5;
+      margin-left: 10px;
+    }
+  }
+  .memberInfo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-weight: 500;
+  }
+  .selectAvatar {
+    display: flex;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    margin-right: 4px;
+    border-radius: 2px;
+  }
+  .namePart {
+    max-width: 210px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #0c1024;
+    font-weight: 500;
+  }
+  :global {
+    .ant-select-item-option-content {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+.teamMembersDp {
+  .noContentPart {
+    text-align: center;
+    color: #91939c;
+    font-size: 14px;
+  }
+  :global {
+    .ant-select-item-option-disabled {
+      cursor: pointer;
+      &:hover {
+        background-color: #f5f6f6;
+      }
+    }
+  }
+}
+
+.selectSuffixIcon {
+  font-size: 13px;
+  color: #0c1024;
+}

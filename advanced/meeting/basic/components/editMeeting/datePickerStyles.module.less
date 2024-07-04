@@ -1,0 +1,67 @@
+.datePopup {
+  :global {
+    .ant-picker-header button {
+      color: #0c1024;
+      &:hover {
+        color:#2e73e5;
+      }
+    }
+    .ant-picker-cell-in-view.ant-picker-cell-today
+      .ant-picker-cell-inner::before {
+      border-radius: 50%;
+    }
+    .ant-picker-cell .ant-picker-cell-inner {
+      border-radius: 50%;
+    }
+    .ant-picker-panel-container .ant-picker-panel {
+      border-bottom: none;
+    }
+    .ant-picker:hover,
+    .ant-picker-focused {
+      border-color: #2e73e5;
+      box-shadow: none;
+    }
+    .ant-picker-body {
+      thead {
+        font-size: 14px;
+      }
+      th {
+        color: #91939c;
+      }
+
+      .ant-picker-cell {
+        color: #0c1024;
+        width: 39px;
+        height: 42px;
+
+        &.ant-picker-cell-disabled {
+          color: #91939c;
+        }
+
+        &:before {
+          background: unset;
+        }
+
+        .ant-picker-cell-inner {
+          min-width: 26px;
+          height: 26px;
+          line-height: 26px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+.datePopupMeeting {
+  :global {
+    .ant-picker-panel .ant-picker-footer {
+      display: none;
+    }
+    .ant-picker-header-super-prev-btn {
+      display: none;
+    }
+    .ant-picker-header-super-next-btn {
+      display: none;
+    }
+  }
+}
