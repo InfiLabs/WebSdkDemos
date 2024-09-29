@@ -1,7 +1,7 @@
 import { type AddMemberCmpProp } from "@plaso-infi/whiteboard-sdk";
 import { AddMember, TeamMemberInfo } from "@plaso-infi/whiteboard-ext-tools";
 import { getAllUsersInfo } from "../utils/mock";
-import "@plaso-infi/whiteboard-ext-tools/dist/cjs/index.css";
+import "@plaso-infi/whiteboard-ext-tools/dist/esm/index.css";
 import React from "react";
 
 export const AddMemberCmp = (props: AddMemberCmpProp) => {
