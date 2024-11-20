@@ -11,13 +11,13 @@ const devQuerySample = {
    * 就能访问画布，而不是首先要基于 restful 接口创建画布，记录 recordId，再基于
    * recordId 来生成画布连接参数。
    */
-  recordId: "HelloWorld",
+  recordId: "66f91159ec00c5000169ea01",
   // 您注册的应用 appId
-  appId: "YOUR_APP_ID_HERE",
+  appId: "EQoumU",
   // 您注册的应用 appSecret，注：强烈推荐不要放在前端项目中
-  appKey: "YOUR_APP_SECRET_HERE",
+  appKey: "3LO0o5ZMeneYI8gUsxV6wS6UjmWc0gHZ",
   // 画布访问用户的用户 ID，由开发者自行定义，同样的 loginName 在同一块画布内，会被人为是同一名用户
-  loginName: "user_0",
+  loginName: "monitor_zx",
 };
 
 /**
@@ -35,17 +35,23 @@ window.onload = async () => {
   const container = document.getElementById("board-app") as HTMLDivElement;
   // 初始化画布实例
   const initPromise = await InfiWebSdk.getSdkInstance({
+    editable: false,
     getQueryString: getQuery,
     /**
      * 给入画布用户的信息，包括用户ID loginName，与用户名称 userName。
      * 对于不同用户，loginName 应尽可能保证不同，而 userName 则只会影响显示
      */
     userInfo: {
-      loginName: "user_0",
-      userName: "User 0",
+      loginName: "monitor_zx",
+      userName: "monitor_zx",
+      avatarUrl:
+        "https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1.jpeg",
     },
     /** 给入画布即将挂在的 DOM 节点 */
     containerDom: container,
+    toolbarWidgetsConfigs: {
+      boardMemberList: true,
+    },
     /**
      * 画布用来根据用户 loginName 读取远端用户数据，并用户本地显示的函数，
      * 因为当前是单人使用画布 demo，故传入空函数即可
@@ -63,6 +69,7 @@ window.onload = async () => {
     console.error(payload);
     return;
   }
+
   /** 初始化成功 */
   console.log(code, payload);
 };
