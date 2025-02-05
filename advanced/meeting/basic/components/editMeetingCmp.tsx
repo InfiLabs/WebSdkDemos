@@ -10,7 +10,10 @@ import "@plaso-infi/whiteboard-sdk/dist/esm/index.css";
 export const EditMeetingCmp = (props: EditMeetingCmpProp) => {
   const { data, onSubmit, onFormChanged, getCurServerTime } = props;
   const { disableShortCut, enableShortCut } = useInfiWebSDK();
-  const userInfo = getUserInfo("user_0");
+
+  const userInfo = JSON.parse(
+    sessionStorage.getItem("SDK_USER") || "{}"
+  ) as TeamMemberInfo;
 
   const getTeamMembersInBoard = async () => {
     const members: TeamMemberInfo[] = await getAllUsersInfo();

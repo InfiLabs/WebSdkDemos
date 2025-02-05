@@ -232,20 +232,20 @@
   resolved "https://r.cnpmjs.org/@esbuild/win32-x64/-/win32-x64-0.19.11.tgz#a5d300008960bb39677c46bf16f53ec70d8dee04"
   integrity sha512-vfkhltrjCAb603XaFhqhAF4LGDi2M4OrCRrFusyQ+iTLQ/o60QQXxc9cZC/FFpihBI9N1Grn6SMKVJ4KP7Fuiw==
 
-"@plaso-infi/whiteboard-ext-tools@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.npmmirror.com/@plaso-infi/whiteboard-ext-tools/-/whiteboard-ext-tools-0.5.3.tgz#d5c4444a65766c7f5bf7313a618157f4df0e1c37"
-  integrity sha512-q8AhKlX9LE0AHU3sdKbp4sgAoiwd2xC9mmDlRaneMQ6Py5D+zq0BKH9Lmo6wVtLxcLPKj73fNBHquLyrtY0RQw==
+"@plaso-infi/whiteboard-ext-tools@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.npmmirror.com/@plaso-infi/whiteboard-ext-tools/-/whiteboard-ext-tools-0.7.2.tgz#6fc47694718b3ded058ceeb74bf6959d48b7ce51"
+  integrity sha512-43GccB+gtFZW05L3VO4wJLtlZBYzPjQo6k+XhsAQNKfqFu+2SHWf4A5Oj385RcGfLXr1YrpY9DDKOt0t3E/9Ng==
   dependencies:
     "@ant-design/icons" "^5.3.0"
     crypto-js "^4.1.1"
     dayjs "^1.11.10"
     qrcode.react "^3.1.0"
 
-"@plaso-infi/whiteboard-sdk@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.npmmirror.com/@plaso-infi/whiteboard-sdk/-/whiteboard-sdk-0.5.3.tgz#b32d74513aa361f8ba9c880eb94200bd28b77692"
-  integrity sha512-e0Rh0zZEuZb30GP4e10ysQ9obzbeeT9U/YX4ghot6hE2VmjzDVS+1yKiZOQr6fQgJZNi2BBpfpmJ9Yjq/IKTGg==
+"@plaso-infi/whiteboard-sdk@^0.7.2":
+  version "0.7.2"
+  resolved "https://registry.npmmirror.com/@plaso-infi/whiteboard-sdk/-/whiteboard-sdk-0.7.2.tgz#cdb70ddfe3b6933945b98e397498c744cba3a8ca"
+  integrity sha512-3EIdyfchbNCml1SICvEZ98aJfVSFqmbAiYAkAkxbccNnJajL3HTIoKFBpzzpcDQNEVBno2+Nw8O6MrSC+E7aaw==
 
 "@rc-component/async-validator@^5.0.3":
   version "5.0.4"
@@ -409,19 +409,18 @@
   resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.11.tgz#2596fb352ee96a1379c657734d4b913a613ad563"
   integrity sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==
 
+"@types/react-dom@^17.0.2":
+  version "17.0.26"
+  resolved "https://registry.npmmirror.com/@types/react-dom/-/react-dom-17.0.26.tgz#fa7891ba70fd39ddbaa7e85b6ff9175bb546bc1b"
+  integrity sha512-Z+2VcYXJwOqQ79HreLU/1fyQ88eXSSFh6I3JdrEHQIfYSI0kCQpTGvOrbE6jFGGYXKsHuwY9tBa/w5Uo6KzrEg==
+
 "@types/react@^18.2.64":
-  version "18.2.64"
-  resolved "https://registry.npmjs.org/@types/react/-/react-18.2.64.tgz#3700fbb6b2fa60a6868ec1323ae4cbd446a2197d"
-  integrity sha512-MlmPvHgjj2p3vZaxbQgFUQFvD8QiZwACfGqEdDSWou5yISWxDQ4/74nCAwsUiX7UFLKZz3BbVSPj+YxeoGGCfg==
+  version "18.3.18"
+  resolved "https://registry.npmmirror.com/@types/react/-/react-18.3.18.tgz#9b382c4cd32e13e463f97df07c2ee3bbcd26904b"
+  integrity sha512-t4yC+vtgnkYjNSKlFx1jkAhH8LgTo2N/7Qvi83kdEaUtMDiwpbLAktKDaAMlRcJ5eSxZkH74eEGt1ky31d7kfQ==
   dependencies:
     "@types/prop-types" "*"
-    "@types/scheduler" "*"
     csstype "^3.0.2"
-
-"@types/scheduler@*":
-  version "0.16.8"
-  resolved "https://registry.npmjs.org/@types/scheduler/-/scheduler-0.16.8.tgz#ce5ace04cfeabe7ef87c0091e50752e36707deff"
-  integrity sha512-WZLiwShhwLRmeV6zH+GkbOFT6Z6VklCItrDioxUnv+u4Ll+8vKeFySoFyK/0ctcRpOmwAicELfmys1sDc/Rw+A==
 
 address@^1.2.2:
   version "1.2.2"
