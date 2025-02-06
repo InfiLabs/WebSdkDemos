@@ -3,8 +3,8 @@ import InfiWebSdk from "@plaso-infi/whiteboard-sdk";
 // 需要引入画布样式文件，此文件有做类命名 scoped 处理，所以不用担心样式类名冲突
 import "@plaso-infi/whiteboard-sdk/dist/esm/index.css";
 import { getUserInfo, getUsersInfo } from "./utils/mock";
-import { AddMemberCmp } from "./components/addMemberCmp";
 import { EditMeetingCmp } from "./components/editMeetingCmp";
+import { InviteMeetingCmp } from "./components/inviteMeetingUserCmp";
 
 /**
  * 选择一个账号并模拟登陆
@@ -21,6 +21,13 @@ const defaultLoginName = "user_1";
  */
 let searchString = new URLSearchParams(window.location.search);
 const loginName = searchString.get("loginName") || defaultLoginName;
+
+sessionStorage.setItem("SDK_USER", JSON.stringify(getUserInfo(loginName)));
+
+/**
+ * 从链接中获取会议id信息
+ */
+const autoJoinMeetingId = searchString.get("meetingId") ?? undefined;
 
 // 画布连接参数数据示例，仅作 demo 演示
 const devQuerySample = {
@@ -51,6 +58,11 @@ const devQuerySample = {
  * 出于安全考虑，应该尽可能确保 appSecret 不会于网络上传输
  */
 const getQuery = async () => {
+  /**
+   * meetingId参数仅作为会议邀请链接标识
+   * - 会议邀请链接功能仅作为参考
+   **/
+  searchString.delete("meetingId");
   // 优先解析url内的searchParams
   const queryString = Promise.resolve(
     searchString.toString() || getInfiWebsdkQuery(devQuerySample)
@@ -63,7 +75,7 @@ window.onload = async () => {
   const container = document.getElementById("board-app") as HTMLDivElement;
   // 初始化画布实例
   const initRes = await InfiWebSdk.getSdkInstance({
-        getQueryString: getQuery,
+    getQueryString: getQuery,
     /**
      * 给入画布用户的信息，包括用户ID loginName，与用户名称 userName。
      * 对于不同用户，loginName 应尽可能保证不同，而 userName 则只会影响显示
@@ -90,10 +102,12 @@ window.onload = async () => {
       couldCreateMeeting: getUserInfo(loginName).userType !== "visitor",
       /** 是否能在会议中查看成员列表，及是否可以直接添加参会人员 */
       couldCheckMemberList: true,
-      /** 添加会议成员的组件 */
-      AddMemberCmp: AddMemberCmp,
       /** 预定/编辑会议时调整参数的组件 */
       EditMeetingCmp: EditMeetingCmp,
+      /** 会议邀请组件 */
+      InviteMemberCmp: InviteMeetingCmp,
+      /** 直接进入会议 */
+      autoJoinId: autoJoinMeetingId,
     },
   });
   /**

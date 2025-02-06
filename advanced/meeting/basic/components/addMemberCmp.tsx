@@ -1,26 +1,52 @@
-import { type AddMemberCmpProp } from "@plaso-infi/whiteboard-sdk";
-import "@plaso-infi/whiteboard-ext-tools/dist/esm/index.css";
-import { getAllUsersInfo, getUserInfo } from "../utils/mock";
+import {
+  AddMember,
+  type TeamMemberInfo,
+} from "@plaso-infi/whiteboard-ext-tools";
+import { Modal } from "antd";
 import React from "react";
-import "@plaso-infi/whiteboard-ext-tools/dist/esm/index.css";
-import { AddMember } from "./editMeeting/addMember";
+import { getAllUsersInfo } from "../utils/mock";
 
-export const AddMemberCmp = (props: AddMemberCmpProp) => {
-  const { onSubmit, onCancel, curJoiners, listAll, getMeetingLink } = props;
-  const userInfo = getUserInfo("user_0");
+export function AddMemberCmp(props: {
+  onClose: () => void;
+  getMeetingLink: () => void;
+  setJoiners: (loginNames: string[]) => void;
+  curJoiners: string[];
+  getContainer?: false | HTMLElement;
+}) {
+  const { curJoiners, onClose, setJoiners, getMeetingLink, getContainer } =
+    props;
+
+  const userInfo = JSON.parse(
+    sessionStorage.getItem("SDK_USER") || "{}"
+  ) as TeamMemberInfo;
   return (
-    <AddMember
-      user={userInfo}
-      onSubmit={onSubmit}
-      onCancel={onCancel}
-      /**
-       * getTeamMembersInBoard - 配置白板内所有可邀请成员
-       * 仅受邀请的成员能加入会议
-       */
-      getTeamMembersInBoard={getAllUsersInfo}
-      curJoiners={curJoiners}
-      listAll={listAll}
-      getMeetingLink={getMeetingLink}
-    />
+    <Modal
+      width={640}
+      centered
+      destroyOnClose
+      footer={null}
+      closable={false}
+      open={true}
+      onCancel={onClose}
+      className="addMemberModal"
+      getContainer={getContainer}
+    >
+      <AddMember
+        user={userInfo}
+        onSubmit={(data) => {
+          setJoiners(data);
+          onClose();
+        }}
+        onCancel={onClose}
+        /**
+         * getTeamMembersInBoard - 配置白板内所有可邀请成员
+         * 仅受邀请的成员能加入会议
+         */
+        getTeamMembersInBoard={getAllUsersInfo}
+        curJoiners={curJoiners}
+        listAll={false}
+        getMeetingLink={getMeetingLink}
+      />
+    </Modal>
   );
-};
+}
