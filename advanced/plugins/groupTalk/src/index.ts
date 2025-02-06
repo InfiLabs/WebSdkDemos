@@ -1,14 +1,17 @@
 import InfiWebSdk, {
   GroupTalkPlugin,
   InfiWebsdkInstanceType,
-} from "@plaso-infi/whiteboard-sdk";
+} from '@plaso-infi/whiteboard-sdk';
 import {
   getInfiWebsdkQuery,
   type WebsdkQueryParams,
-  TeamMemberInfo,
-} from "@plaso-infi/whiteboard-ext-tools";
-import "@plaso-infi/whiteboard-sdk/dist/cjs/index.css";
-import { getUsers } from "./utils/mock";
+} from '@plaso-infi/whiteboard-ext-tools';
+import '@plaso-infi/whiteboard-sdk/dist/esm/index.css';
+
+const userInfo = {
+  loginName: '64effe72f80848446b7d5489',
+  userName: 'user_0',
+};
 
 const devQuerySample: WebsdkQueryParams = {
   /**
@@ -17,37 +20,26 @@ const devQuerySample: WebsdkQueryParams = {
    * 就能访问画布，而不是首先要基于 restful 接口创建画布，记录 recordId，再基于
    * recordId 来生成画布连接参数。
    */
-  recordId: "HelloWorld",
+  recordId: 'HelloWorld',
   // 您注册的应用 appId
-  appId: "APPID",
+  appId: 'APPID',
   // 您注册的应用 appSecret，注：此字段为敏感信息，请尽量不要放在前端项目中
-  appKey: "APP_SECRET",
-  loginName: "",
-  userType: "editor",
+  appKey: 'APP_SECRET',
+  loginName: userInfo.loginName,
+  userType: 'editor',
 };
 
+// 获取完整画布连接参数
 const getQuery = async () =>
   Promise.resolve(getInfiWebsdkQuery(devQuerySample));
 
-const initUser = async () => {
-  const members: TeamMemberInfo[] = await getUsers();
-  userInfo = members[0];
-  devQuerySample.loginName = userInfo.userId;
-  localStorage.setItem("userInfo", JSON.stringify(userInfo));
-};
-
-const container = document.getElementById("app") as HTMLDivElement;
-let userInfo;
+const container = document.getElementById('app') as HTMLDivElement;
 let ins: InfiWebsdkInstanceType;
 
 const setup = async () => {
   const initRes = await InfiWebSdk.getSdkInstance({
-    env: "dev",
     getQueryString: getQuery,
-    userInfo: {
-      loginName: userInfo.userId,
-      userName: userInfo.userName,
-    },
+    userInfo: userInfo,
     containerDom: container,
     plugins: [
       // 分组讨论插件
@@ -61,23 +53,6 @@ const setup = async () => {
       },
     ],
     getUsersInfo: async () => [],
-    toolbarWidgetsConfigs: {
-      titleBarVisible: true,
-      optionBarVisible: true,
-      floatBarVisible: true,
-      fullscreen: false,
-      meeting: false,
-      ai: false,
-      toolbarConfig: {
-        sticker: true,
-        upload: true,
-        stickyNote: true,
-        connectLine: true,
-        frame: true,
-      },
-    },
-
-    meetingConfigs: {},
   });
 
   if (initRes.code) {
@@ -87,15 +62,14 @@ const setup = async () => {
 
   ins = initRes.payload;
 
-  ins.on("connected", () => {
-    console.log("whiteboard connected");
+  ins.on('connected', () => {
+    console.log('whiteboard connected');
   });
-  ins.on("presentation_change", (value) => {
+  ins.on('presentation_change', (value) => {
     console.log(value);
   });
-  ins.on("connectInfoUpdated", (v) => console.log("connect info updated", v));
+  ins.on('connectInfoUpdated', (v) => console.log('connect info updated', v));
 };
 window.onload = async () => {
-  await initUser();
   setup();
 };
