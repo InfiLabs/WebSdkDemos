@@ -2,19 +2,22 @@ import InfiWebSdk, {
   VotingPlugin,
   InfiWebsdkInstanceType,
   GroupTalkPlugin,
-} from "@plaso-infi/whiteboard-sdk";
+} from '@plaso-infi/whiteboard-sdk';
 import {
   getInfiWebsdkQuery,
   type WebsdkQueryParams,
-  TeamMemberInfo,
   getUrlSearchParams,
-} from "@plaso-infi/whiteboard-ext-tools";
-import { getUsers } from "./utils/mock";
-import "@plaso-infi/whiteboard-sdk/dist/esm/index.css";
-import dayjs from "dayjs";
-import React from "react";
-import ReactDOM from "react-dom";
-import QrCodeModal from "./components/QrCodeModal/QrCodeModal";
+} from '@plaso-infi/whiteboard-ext-tools';
+import '@plaso-infi/whiteboard-sdk/dist/esm/index.css';
+import dayjs from 'dayjs';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import QrCodeModal from './components/QrCodeModal/QrCodeModal';
+
+const userInfo = {
+  loginName: '64effe72f80848446b7d5489',
+  userName: 'user_0',
+};
 
 const devQuerySample: WebsdkQueryParams = {
   /**
@@ -23,27 +26,25 @@ const devQuerySample: WebsdkQueryParams = {
    * 就能访问画布，而不是首先要基于 restful 接口创建画布，记录 recordId，再基于
    * recordId 来生成画布连接参数。
    */
-  recordId: "HelloWorld",
+  recordId: 'HelloWorld',
   // 您注册的应用 appId
-  appId: "APPKEY",
+  appId: 'APPID',
   // 您注册的应用 appSecret，注：此字段为敏感信息，请尽量不要放在前端项目中
-  appKey: "APP_SECRET",
-  loginName: "",
-  userType: "editor",
+  appKey: 'APP_SECRET',
+  loginName: userInfo.loginName,
+  userType: 'editor',
 };
 
+// 获取完整画布连接参数
 const getQuery = async () =>
   Promise.resolve(getInfiWebsdkQuery(devQuerySample));
 
-const initUser = async () => {
-  const members: TeamMemberInfo[] = await getUsers();
-  userInfo = members[0];
-  devQuerySample.loginName = userInfo.userId;
-  localStorage.setItem("userInfo", JSON.stringify(userInfo));
-};
+const container = document.getElementById('app') as HTMLDivElement;
+let ins: InfiWebsdkInstanceType;
 
-const getVoteId = (): string => getUrlSearchParams("voteId");
-const getBoardId = (): string => devQuerySample.recordId ?? "";
+const getVoteId = (): string => getUrlSearchParams('voteId');
+
+const getBoardId = (): string => devQuerySample.recordId ?? '';
 
 const getInviteVotingUrl = async (params: {
   voteId: string;
@@ -55,55 +56,53 @@ const getInviteVotingUrl = async (params: {
   const url = `${location.href}?boardId=${getBoardId()}&voteId=${voteId}`;
   function getExpirationTime() {
     if (endTime) {
-      const str = dayjs(endTime).format("YYYY-MM-DD HH:mm").replace(/-/g, "/");
+      const str = dayjs(endTime).format('YYYY-MM-DD HH:mm').replace(/-/g, '/');
       return str;
     }
   }
   const expirationTime = getExpirationTime();
   const copyText = expirationTime
     ? `${creator}发起了【${voteName}】投票，截止时间 ${expirationTime}，点击参与：${url}`
-    : "${creator}发起了【${voteName}】投票，点击参与：";
+    : `${creator}发起了【${voteName}】投票，点击参与：`;
   return copyText;
 };
+
 const showVotingQrCode = (params: { voteId: string }) => {
-  const modalContainer = document.getElementById(
-    "voting-modal-container"
-  ) as HTMLDivElement;
+  const root = createRoot(
+    document.getElementById('voting-modal-container') as HTMLDivElement,
+  );
   const props = {
     ...params,
     show: true,
     boardId: getBoardId(),
     onClose: () => {
-      ReactDOM.unmountComponentAtNode(modalContainer);
+      root.unmount();
     },
   };
-  ReactDOM.render(React.createElement(QrCodeModal, props), modalContainer);
+
+  root.render(React.createElement(QrCodeModal, props));
   ins?.disableShortCut();
 };
+
 const onJoinVoting = (params: { voteId: string; success: boolean }) => {
-  console.log("call onJoinVoting", params);
-};
-const didLeaveVoting = (params: { voteId: string }) => {
-  console.log("call didLeaveVoting", params);
-};
-const handleVotingEnded = (params: { voteId: string }) => {
-  console.log("call handleVotingEnded", params);
+  console.log('call onJoinVoting', params);
 };
 
-const container = document.getElementById("app") as HTMLDivElement;
-let userInfo;
-let ins: InfiWebsdkInstanceType;
+const didLeaveVoting = (params: { voteId: string }) => {
+  console.log('call didLeaveVoting', params);
+};
+
+const handleVotingEnded = (params: { voteId: string }) => {
+  console.log('call handleVotingEnded', params);
+};
 
 const setup = async () => {
   const initRes = await InfiWebSdk.getSdkInstance({
-    env: "dev",
     getQueryString: getQuery,
-    userInfo: {
-      loginName: userInfo.userId,
-      userName: userInfo.userName,
-    },
+    userInfo: userInfo,
     containerDom: container,
     plugins: [
+      // 分组讨论插件
       {
         pluginConstructor: GroupTalkPlugin,
         config: {
@@ -112,6 +111,7 @@ const setup = async () => {
           canCreateTalk: true,
         },
       },
+      // 投票插件
       {
         pluginConstructor: VotingPlugin,
         config: {
@@ -128,7 +128,6 @@ const setup = async () => {
       },
     ],
     getUsersInfo: async () => [],
-    meetingConfigs: {},
   });
 
   if (initRes.code) {
@@ -138,15 +137,14 @@ const setup = async () => {
 
   ins = initRes.payload;
 
-  ins.on("connected", () => {
-    console.log("whiteboard connected");
+  ins.on('connected', () => {
+    console.log('whiteboard connected');
   });
-  ins.on("presentation_change", (value) => {
+  ins.on('presentation_change', (value) => {
     console.log(value);
   });
-  ins.on("connectInfoUpdated", (v) => console.log("connect info updated", v));
+  ins.on('connectInfoUpdated', (v) => console.log('connect info updated', v));
 };
 window.onload = async () => {
-  await initUser();
   setup();
 };

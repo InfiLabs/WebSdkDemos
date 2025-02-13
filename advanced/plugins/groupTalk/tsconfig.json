@@ -14,7 +14,11 @@
     "resolveJsonModule": true,
     "strict": true,
     "noImplicitAny": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "lib": [
+      "ES2021",
+      "dom"
+    ],
   },
   "include": [
     "src/**/*.d.ts",

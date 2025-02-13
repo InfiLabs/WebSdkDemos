@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Modal, QRCode } from "antd";
-import dayjs from "dayjs";
+import React, { useEffect, useRef, useState } from 'react';
+import { Modal, QRCode } from 'antd';
+import dayjs from 'dayjs';
 
 export type QrCodeModalProps = {
   show: boolean;
@@ -10,9 +10,9 @@ export type QrCodeModalProps = {
 };
 
 export enum QrCodeStatus {
-  active = "active",
-  expired = "expired",
-  loading = "loading",
+  active = 'active',
+  expired = 'expired',
+  loading = 'loading',
 }
 
 // 二维码过期时间为 5 分钟
@@ -25,11 +25,11 @@ const QrCodeModal: React.FC<QrCodeModalProps> = ({
 }) => {
   const [status, setStatus] = useState(QrCodeStatus.active);
   const [open, setOpen] = useState(false);
-  const [url, setUrl] = useState("");
+  const [url, setUrl] = useState('');
   const expiredTimer = useRef<any>();
 
   const getExpirationTime = () => {
-    return dayjs().add(5, "minutes").unix();
+    return dayjs().add(5, 'minutes').unix();
   };
 
   const getUrl = () => {
@@ -39,8 +39,8 @@ const QrCodeModal: React.FC<QrCodeModalProps> = ({
       }?boardId=${boardId}&voteId=${voteId}&expired=${getExpirationTime}`;
       return url;
     }
-    console.error("no voteId");
-    return "";
+    console.error('no voteId');
+    return '';
   };
 
   const refresh = () => {
@@ -53,7 +53,7 @@ const QrCodeModal: React.FC<QrCodeModalProps> = ({
         setStatus(QrCodeStatus.expired);
       }, expired);
     } else {
-      console.error("makeQRCode error: no url");
+      console.error('makeQRCode error: no url');
     }
   };
 
@@ -78,9 +78,9 @@ const QrCodeModal: React.FC<QrCodeModalProps> = ({
       >
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
           }}
         >
           <QRCode value={url} size={300} status={status} onRefresh={refresh} />
