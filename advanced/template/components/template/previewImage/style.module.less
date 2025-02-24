@@ -1,0 +1,39 @@
+.previewImageContainer {
+  height: 100% !important;
+  width: 100% !important;
+  border-radius: 8px;
+  border: 1px solid #e6e6e6;
+  background: #f2f2f2;
+  overflow: hidden;
+}
+
+.previewControl {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  padding: 0px 12px;
+  align-items: center;
+  gap: 24px;
+  height: 36px;
+  user-select: none;
+
+  .control {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    &:not(:last-child):after {
+      content: '';
+      height: 20px;
+      width: 1px;
+      position: absolute;
+      left: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+}

@@ -1,0 +1,161 @@
+.templateModal:global(.ant-modal) {
+  max-width: 1082px;
+  width: calc(100% - 32px) !important;
+
+  :global(.ant-modal-content) {
+    padding: 0;
+  }
+}
+
+.templateContent {
+  padding: 20px 0 20px 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 0 20px;
+  }
+
+  .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .container {
+    flex: 1;
+    overflow: hidden;
+  }
+}
+
+.filterHeader {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+  padding: 0 20px;
+}
+
+.cover {
+  position: relative;
+  padding: 8px;
+  background: #f2f2f2;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.info {
+  gap: 2px;
+  margin-top: 8px;
+
+  .subtitle {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0.45);
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 500;
+    .ellipsis;
+  }
+}
+
+.cardFooter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  border-radius: 0 0 6px 6px;
+  background: #f2f2f2;
+  transition: height 0.2s;
+  gap: 10px;
+  padding: 0 10px;
+  > button {
+    flex: 1;
+  }
+  .previewBtn {
+    &:hover {
+      border: 1px solid #1677ff;
+      background: #e6f4ff;
+    }
+    &:active {
+      border: 1px solid #1677ff;
+      background: #bae0ff;
+    }
+  }
+  &.overCard {
+    height: 52px;
+  }
+}
+
+.previewHeader {
+  cursor: pointer;
+  width: max-content;
+  &:hover {
+    color: #1677ff;
+  }
+}
+
+.previewContainer {
+  display: flex;
+  height: 100%;
+  margin: 16px 20px 20px 20px;
+  .previewImage {
+    position: relative;
+    border-radius: 8px;
+    background: #f2f2f2;
+    flex: 1;
+    margin-right: 20px;
+  }
+
+  .rightInfo {
+    width: 253px;
+    .infoTitle {
+      color: rgba(0, 0, 0, 0.88);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
+    }
+    .tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .infoSubTitle {
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 14px;
+      line-height: 22px;
+      margin-top: 12px;
+    }
+    .useBtn {
+      margin-top: 32px;
+    }
+  }
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
